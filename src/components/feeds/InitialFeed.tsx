@@ -5,6 +5,8 @@ export default function InitialFeed() {
     const [text, setText] = useState("")
     const maxLength = 300
 
+    const isEmpty = text.length === 0
+
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textarea = textareaRef.current
     if (textarea) {
@@ -29,7 +31,10 @@ export default function InitialFeed() {
                         <div className="w-full">
                             <textarea ref={textareaRef} onInput={handleInput} maxLength={maxLength} className="w-full h-full resize-none outline-none" placeholder="Pergunte ou procure por qualquer coisa no seu ambiente de trabalho..."></textarea>
                         </div>
-                        <div className={`transition-all duration-300 ease-in-out ${text.length >= maxLength ? 'text-[var(--sub-text)]' : ''}`}>{text.length} / {maxLength}</div>
+                        <div className="flex flex-row justify-between">
+                            <div className={`transition-all duration-300 ease-in-out ${text.length >= maxLength ? 'text-[var(--sub-text)]' : ''}`}>{text.length} / {maxLength}</div>
+                            <img src="/icons/send.png" className={`w-[25px] h-[25px] transition-all duration-300 ease-in-out ${isEmpty ? "brightness-50" : ""}`}></img>
+                        </div>
                     </form>
                 </div>
             </div>
